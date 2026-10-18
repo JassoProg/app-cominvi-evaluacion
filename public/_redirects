@@ -1,0 +1,5 @@
+# CORS de la API
+/api/*  https://calidad.cominvi.com.mx:8880/api/:splat  200
+
+# Rutas de Angular al recargar la pagina
+/*      /index.html   200

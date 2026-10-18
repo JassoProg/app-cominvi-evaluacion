@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private url = 'https://calidad.cominvi.com.mx:8880/api/principal';
+  private url = '/api/principal';
 
   constructor(private http: HttpClient) {}
 
