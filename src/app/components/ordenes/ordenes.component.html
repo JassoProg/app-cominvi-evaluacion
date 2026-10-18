@@ -19,11 +19,9 @@
     </select>
 
     <label>Cantidad:</label>
-    <input type="number" name="cantidad" [(ngModel)]="nuevaOrden.cantidad" min="1" required>
-
+    <input type="number" name="cantidad" [(ngModel)]="nuevaOrden.cantidad" min="1" >
     <label>Precio Unitario:</label>
-    <input type="number" name="precio" [(ngModel)]="nuevaOrden.preciounitario" step="0.01" required>
-
+    <input type="number" name="precio" [(ngModel)]="nuevaOrden.preciounitario" step="0.01">
     <button type="submit" [disabled]="ordenForm.invalid">Guardar Orden</button>
   </form>
 </div>
