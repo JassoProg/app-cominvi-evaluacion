@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { OrdenesComponent } from './components/ordenes/ordenes.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [UsuariosComponent, OrdenesComponent],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app-cominvi';
+  title = 'app-cominvi-evaluacion';
 }

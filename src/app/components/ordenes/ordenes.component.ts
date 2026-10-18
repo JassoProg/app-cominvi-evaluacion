@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, JsonPipe } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-ordenes',
   standalone: true,
-  imports: [FormsModule, CurrencyPipe],
+  imports: [FormsModule, CurrencyPipe, JsonPipe],
   templateUrl: './ordenes.component.html'
 })
 export class OrdenesComponent implements OnInit {
