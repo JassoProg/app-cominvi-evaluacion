@@ -21,18 +21,27 @@ export class UsuariosComponent {
     fecharegistro: this.hoy
   };
 
+  mensajeError = '';
+  mensajeExito = '';
+
   constructor(private api: ApiService) {}
 
   guardarUsuario(form: any) {
-    if (form.invalid) return;
+    this.mensajeError = '';
+    this.mensajeExito = '';
+
+    if (form.invalid) {
+      this.mensajeError = 'Completa correctamente todos los campos.';
+      return;
+    }
 
     this.api.crearUsuario(this.usuario).subscribe({
       next: () => {
-        alert('Usuario registrado con éxito');
+        this.mensajeExito = 'Usuario registrado con éxito.';
         form.resetForm();
         this.usuario.fecharegistro = this.hoy;
       },
-      error: () => alert('Error al guardar el usuario')
+      error: () => this.mensajeError = 'No fue posible guardar el usuario.'
     });
   }
 }

@@ -1,48 +1,66 @@
-
-/* Buscamos un estilo en internet para un diseño más bonito. */
-*
-
-{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+:root {
+  --color-naranja: #ff8c00;
+  --color-naranja-hover: #e67e00;
+  --color-oscuro: #1e1e1e;
+  --color-fondo: #e2e8f0;
+}
+
 body {
-  background-color: #f0f2f5;
+  background-color: var(--color-fondo);
   color: #333;
 }
 
 .navbar {
-  background-color: #2c3e50;
+  background-color: var(--color-oscuro);
   padding: 0 2rem;
-  height: 60px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.nav-brand .logo {
-  color: #f39c12;
-  font-weight: bold;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo-img {
+  height: 45px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  margin-left: 40px;
 }
 
 .nav-links a {
   color: #ecf0f1;
   text-decoration: none;
-  margin-left: 20px;
   font-weight: 500;
-  padding: 8px 12px;
+  padding: 8px 16px;
   border-radius: 4px;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.active {
-  background-color: #34495e;
+.nav-links a:hover {
+  background-color: rgba(255, 140, 0, 0.2);
+  color: var(--color-naranja);
+}
+
+.nav-links a.active {
+  background-color: var(--color-naranja);
+  color: #fff;
 }
 
 .container {
@@ -68,7 +86,7 @@ body {
 
 .card-header h2 {
   font-size: 1.5rem;
-  color: #2c3e50;
+  color: var(--color-oscuro);
 }
 
 .form-grid {
@@ -99,8 +117,24 @@ body {
 
 .form-group input:focus, .form-group select:focus {
   outline: none;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13,110,253,0.1);
+  border-color: var(--color-naranja);
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.15);
+}
+
+.alert {
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
 }
 
 .btn-container {
@@ -110,7 +144,7 @@ body {
 }
 
 .btn-primary {
-  background-color: #0d6efd;
+  background-color: var(--color-naranja);
   color: white;
   border: none;
   padding: 10px 24px;
@@ -122,11 +156,11 @@ body {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #0b5ed7;
+  background-color: var(--color-naranja-hover);
 }
 
 .btn-primary:disabled {
-  background-color: #a5c8fd;
+  background-color: #fbd3a1;
   cursor: not-allowed;
 }
 

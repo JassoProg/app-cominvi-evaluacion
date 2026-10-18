@@ -1,21 +1,54 @@
+
 <div class="card">
-  <h2>Registrar Usuario</h2>
+  <div class="card-header">
+    <h2>Formulario de Usuarios</h2>
+  </div>
+
+  @if (mensajeError) {
+    <div class="alert alert-error" role="alert">{{ mensajeError }}</div>
+  }
+  @if (mensajeExito) {
+    <div class="alert alert-success" role="status">{{ mensajeExito }}</div>
+  }
+
   <form #userForm="ngForm" (ngSubmit)="guardarUsuario(userForm)">
-    
-    <label>Nombre:</label>
-    <input type="text" name="nombre" [(ngModel)]="usuario.nombre">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" name="nombre" [(ngModel)]="usuario.nombre" required minlength="2">
+      </div>
 
-    <label>Apellido Paterno:</label>
-    <input type="text" name="paterno" [(ngModel)]="usuario.paterno">
-    <label>Apellido Materno:</label>
-    <input type="text" name="materno" [(ngModel)]="usuario.materno">
+      <div class="form-group">
+        <label for="paterno">Apellido Paterno</label>
+        <input id="paterno" type="text" name="paterno" [(ngModel)]="usuario.paterno" required minlength="2">
+      </div>
 
-    <label>Correo Electrónico:</label>
-    <input type="email" name="correo" [(ngModel)]="usuario.correo" >
+      <div class="form-group">
+        <label for="materno">Apellido Materno</label>
+        <input id="materno" type="text" name="materno" [(ngModel)]="usuario.materno" required minlength="2">
+      </div>
 
-    <label>Fecha de Registro:</label>
-    <input type="date" name="fecha" [(ngModel)]="usuario.fecharegistro" [max]="hoy" readonly>
+      <div class="form-group">
+        <label for="correo">Correo Electrónico</label>
+        <input id="correo" type="email" name="correo" [(ngModel)]="usuario.correo" required email>
+      </div>
 
-    <button type="submit" [disabled]="userForm.invalid">Guardar Usuario</button>
+      <div class="form-group">
+        <label>Fecha de Registro</label>
+        <input type="date" name="fecha" [(ngModel)]="usuario.fecharegistro" [max]="hoy" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Estatus</label>
+        <select name="estatus" [(ngModel)]="usuario.estatus">
+          <option [ngValue]="1">Activo</option>
+          <option [ngValue]="0">Inactivo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn-primary" [disabled]="userForm.invalid">Enviar</button>
+    </div>
   </form>
 </div>

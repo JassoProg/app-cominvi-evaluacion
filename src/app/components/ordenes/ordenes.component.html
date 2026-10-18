@@ -1,64 +1,92 @@
 <div class="card">
-  <h2>Generar Orden de Compra</h2>
+  <div class="card-header">
+    <h2>Formulario de Órdenes de Compra</h2>
+  </div>
+
+  @if (mensajeError) {
+    <div class="alert alert-error" role="alert">{{ mensajeError }}</div>
+  }
+  @if (mensajeExito) {
+    <div class="alert alert-success" role="status">{{ mensajeExito }}</div>
+  }
+
   <form #ordenForm="ngForm" (ngSubmit)="guardarOrden(ordenForm)">
-    
-    <label>Usuario:</label>
-    <select name="usuario" [(ngModel)]="nuevaOrden.usuarioStr" required>
-      <option value="">Seleccione...</option>
-      @for (u of usuarios; track u.idusuario) {
-        <option [value]="u | json">{{u.nombre}} {{u.paterno}}</option>
-      }
-    </select>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="usuario">Usuarios</label>
+        <select id="usuario" name="usuario" [(ngModel)]="nuevaOrden.usuarioStr" required>
+          <option value="">Seleccione un cliente...</option>
+          @for (u of usuarios; track u.idusuario) {
+            <option [value]="u | json">{{u.nombre}} {{u.paterno}}</option>
+          }
+        </select>
+      </div>
 
-    <label>Producto:</label>
-    <select name="producto" [(ngModel)]="nuevaOrden.productoStr" required>
-      <option value="">Seleccione...</option>
-      @for (p of productos; track p.idproducto) {
-        <option [value]="p | json">{{p.nombre}}</option>
-      }
-    </select>
+      <div class="form-group">
+        <label for="producto">Productos</label>
+        <select id="producto" name="producto" [(ngModel)]="nuevaOrden.productoStr" required>
+          <option value="">Seleccione un producto...</option>
+          @for (p of productos; track p.idproducto) {
+            <option [value]="p | json">{{p.nombre}}</option>
+          }
+        </select>
+      </div>
 
-    <label>Cantidad:</label>
-    <input type="number" name="cantidad" [(ngModel)]="nuevaOrden.cantidad" min="1" >
-    <label>Precio Unitario:</label>
-    <input type="number" name="precio" [(ngModel)]="nuevaOrden.preciounitario" step="0.01">
-    <button type="submit" [disabled]="ordenForm.invalid">Guardar Orden</button>
+      <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input id="cantidad" type="number" name="cantidad" [(ngModel)]="nuevaOrden.cantidad" required min="1">
+      </div>
+
+      <div class="form-group">
+        <label for="precio">Precio Unitario</label>
+        <input id="precio" type="number" name="precio" [(ngModel)]="nuevaOrden.preciounitario" required min="0.01" step="0.01">
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn-primary" [disabled]="ordenForm.invalid">Enviar</button>
+    </div>
   </form>
 </div>
 
-<div class="card table-container">
-  <h2>Lista de Órdenes</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Usuario</th>
-        <th>Producto</th>
-        <th>Categoría</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Importe Total</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (o of ordenes; track o.idorden) {
-        <tr>
-          <td>{{o.idorden}}</td>
-          <td>{{o.usuario.nombre}}</td>
-          <td>{{o.producto.nombre}}</td>
-          <td>{{o.producto.categoria}}</td>
-          <td>{{o.cantidad}}</td>
-          <td>{{o.preciounitario | currency}}</td>
-          <td>{{o.importeTotal | currency}}</td>
-          <td>{{o.fecha}}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+<div class="card">
+  <div class="card-header">
+    <h2>Tabla de Órdenes de Compra</h2>
+  </div>
 
-  <div class="totales">
-    <p><strong>Gran Total: </strong> {{granTotal | currency}}</p>
-    <p><strong>Total Smartphones: </strong> {{totalSmartphones | currency}}</p>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Usuario</th>
+          <th>Producto</th>
+          <th>Categoría</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Importe Total</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (o of ordenes; track o.idorden) {
+          <tr>
+            <td>{{o.idorden}}</td>
+            <td>{{o.usuario.nombre}} {{o.usuario.paterno}}</td>
+            <td>{{o.producto.nombre}}</td>
+            <td>{{o.producto.categoria}}</td>
+            <td>{{o.cantidad}}</td>
+            <td>{{o.preciounitario | currency}}</td>
+            <td>{{o.importeTotal | currency}}</td>
+            <td>{{o.fecha}}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="totales-box">
+    <p><strong>Gran Total:</strong> {{granTotal | currency}}</p>
+    <p><strong>Total de Smartphones:</strong> {{totalSmartphones | currency}}</p>
   </div>
 </div>
