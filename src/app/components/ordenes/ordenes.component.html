@@ -1,0 +1,66 @@
+<div class="card">
+  <h2>Generar Orden de Compra</h2>
+  <form #ordenForm="ngForm" (ngSubmit)="guardarOrden(ordenForm)">
+    
+    <label>Usuario:</label>
+    <select name="usuario" [(ngModel)]="nuevaOrden.usuarioStr" required>
+      <option value="">Seleccione...</option>
+      @for (u of usuarios; track u.idusuario) {
+        <option [value]="u | json">{{u.nombre}} {{u.paterno}}</option>
+      }
+    </select>
+
+    <label>Producto:</label>
+    <select name="producto" [(ngModel)]="nuevaOrden.productoStr" required>
+      <option value="">Seleccione...</option>
+      @for (p of productos; track p.idproducto) {
+        <option [value]="p | json">{{p.nombre}}</option>
+      }
+    </select>
+
+    <label>Cantidad:</label>
+    <input type="number" name="cantidad" [(ngModel)]="nuevaOrden.cantidad" min="1" required>
+
+    <label>Precio Unitario:</label>
+    <input type="number" name="precio" [(ngModel)]="nuevaOrden.preciounitario" step="0.01" required>
+
+    <button type="submit" [disabled]="ordenForm.invalid">Guardar Orden</button>
+  </form>
+</div>
+
+<div class="card table-container">
+  <h2>Lista de Órdenes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Producto</th>
+        <th>Categoría</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Importe Total</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (o of ordenes; track o.idorden) {
+        <tr>
+          <td>{{o.idorden}}</td>
+          <td>{{o.usuario.nombre}}</td>
+          <td>{{o.producto.nombre}}</td>
+          <td>{{o.producto.categoria}}</td>
+          <td>{{o.cantidad}}</td>
+          <td>{{o.preciounitario | currency}}</td>
+          <td>{{o.importeTotal | currency}}</td>
+          <td>{{o.fecha}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="totales">
+    <p><strong>Gran Total: </strong> {{granTotal | currency}}</p>
+    <p><strong>Total Smartphones: </strong> {{totalSmartphones | currency}}</p>
+  </div>
+</div>
