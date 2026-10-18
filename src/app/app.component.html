@@ -1,10 +1,13 @@
-<main class="container">
-  <header>
-    <h1>Evaluación Práctica - COMINVI </h1>
-  </header>
-  
-  <div class="grid-layout">
-    <app-usuarios></app-usuarios>
-    <app-ordenes></app-ordenes>
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="logo">COMINVI-APP-EXAMEN</span>
   </div>
+  <div class="nav-links">
+    <a routerLink="/ordenes" routerLinkActive="active">Órdenes</a>
+    <a routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
+  </div>
+</nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
 </main>
